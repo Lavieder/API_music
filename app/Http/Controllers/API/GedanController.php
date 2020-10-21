@@ -11,7 +11,7 @@ class GedanController extends Controller
 {
     public function gedanAll() 
     {
-        $gedanlist = Gedan::all();
+        $gedanlist = Gedan::where('gdPlayNum', '>=', '2000')->take(15)->get();
         return  $gedanlist;
     }
 

@@ -11,7 +11,7 @@ class User extends Model
     protected $primaryKey = 'uid';
     public function gedan()
     {
-        return $this->hasMany('App\Models\Gedan','uid');
+        return $this->belongsToMany('App\Models\Gedan','usergedan','uid','gdid');
     }
 
     public function create_token(){

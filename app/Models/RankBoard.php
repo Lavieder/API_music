@@ -10,6 +10,6 @@ class RankBoard extends Model
     protected $primaryKey = 'rbid';
     public function song()
     {
-        return $this->belongsToMany('App\Models\song','rankSong','rbid','sid');
+        return $this->belongsToMany('App\Models\Song','RankSong','rbid','sid');
     }
 }

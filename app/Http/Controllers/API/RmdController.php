@@ -18,7 +18,7 @@ class RmdController extends Controller
     public function recGedan()
     {   
         if (Cache::get('recGedanList') == '') {
-            $recGedanList = Gedan::inRandomOrder()->take(5)->get();
+            $recGedanList = Gedan::where('gdPlayNum', '>', '10000')->inRandomOrder()->orderBy('gdPlayNum', 'desc')->take(5)->get();
             Cache::add('recGedanList', $recGedanList, now()->addHours(24));
         }
         return Cache::get('recGedanList');

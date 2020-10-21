@@ -28,6 +28,8 @@ Route::group(['prefix' => 'user'],function(){
     Route::get('/cmgd','API\UserController@createMyGedan');
     Route::post('/upui','API\UserController@updateUserInfo');
     Route::get('/upui','API\UserController@updateUserInfo');
+    Route::post('/delgd','API\UserController@delGedan');
+    Route::get('/delgd','API\UserController@delGedan');
 });
 
 Route::group(['prefix' => 'rec'],function(){
@@ -51,6 +53,8 @@ Route::group(['prefix' => 'sgdetail'],function(){
 
 Route::group(['prefix' => 'song'],function(){
     Route::get('/today','API\SongController@todaySong');
+    Route::post('increpn','API\SongController@increPlayNum');
+    Route::get('/increpn','API\SongController@increPlayNum');
 });
 
 Route::group(['prefix' => 'album'],function(){
@@ -68,6 +72,7 @@ Route::group(['prefix' => 'rank'],function(){
     Route::get('/rklist','API\RankController@rankBoard');
     Route::post('/rkdetail','API\RankController@rankDetail');
     Route::get('/rkdetail','API\RankController@rankDetail');
+    Route::get('/rksong','API\RankController@rankSong');
 });
 
 Route::group(['prefix' => 'search'],function(){

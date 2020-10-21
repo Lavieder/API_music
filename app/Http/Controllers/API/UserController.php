@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace app\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserGedan;
 use App\Models\Gedan;
 
 class UserController extends Controller
@@ -26,8 +27,8 @@ class UserController extends Controller
 
     public function getUserGedan(Request $req)
     {
-        $uName = $req->input('uName');
-        $selectGd = User::where('uName', $uName)->with('gedan.song')->get(['uid','uName','nickName']);
+        $uid = $req->input('uid');
+        $selectGd = User::where('uid', $uid)->with('gedan.song')->get(['uid','uName','nickName']);
         return $selectGd;
     }
 
@@ -38,8 +39,18 @@ class UserController extends Controller
         $uid = $req->input('uid');
         $insertGdTitle = new Gedan;
         $insertGdTitle->gdTitle = $gdTitle;
-        $insertGdTitle->uid = $uid;
-        return $insertGdTitle->save();
+        $i = $insertGdTitle->save();
+
+        $gdid = Gedan::where('gdTitle', $gdTitle)->orderBy('created_at', 'desc')->first('gdid')->gdid;
+        $insertUserGedan = new UserGedan;
+        $insertUserGedan->uid = $uid;
+        $insertUserGedan->gdid = $gdid;
+        $j = $insertUserGedan->save();
+        if ($i == true && $j == true) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
     
     // 更新个人信息
@@ -65,5 +76,14 @@ class UserController extends Controller
         }else{
             return '更新失败！';
         }
+    }
+
+    public function delGedan(Request $req)
+    {
+        $gdidArr = $req->input('gdid');
+        $uid = $req->input('uid');
+        // 删除用户的歌单
+        $delGd = UserGedan::where('uid', $uid)->whereIn('gdid', $gdidArr)->delete();
+        return $delGd;
     }
 }

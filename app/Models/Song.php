@@ -21,4 +21,13 @@ class song extends Model
     {
         return $this->belongsToMany('App\Models\gedan','gedansong','sid','gdid');
     }
+
+    public function RankSong()
+    {
+        return $this->hasMany('App\Models\RankSong','sid');
+    }
+    public function label()
+    {
+        return $this->belongsToMany('App\Models\Label','songLabel','sid','lbid');
+    }
 }

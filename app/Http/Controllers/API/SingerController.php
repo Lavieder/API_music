@@ -13,7 +13,6 @@ class SingerController extends Controller
     public function singerAll() 
     {
         return Singer::paginate(15);
-        // return Singer::all();
     }
 
     public function areaClassAll()
