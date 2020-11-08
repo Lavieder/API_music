@@ -27,6 +27,6 @@ class checkLogin
             }
         }
         $res = ['state' => 0, 'msg' => '未认证账号', 'errcode' => 401];
-        return response()->json();
+        return response()->json($res);
     }
 }

@@ -40,34 +40,34 @@ class RankController extends Controller
   {
     $rbid = $req->input('rbid');
     if ($rbid == 1 || $rbid == 12 || $rbid == 13) {
-      $rankDetail = Song::with(['singer','album'])->inRandomOrder()->take(3)->get();
+      $rankDetail = Song::with(['singer', 'album'])->inRandomOrder()->take(3)->get();
     } else if ($rbid == 2) {
-      $rankDetail = Song::with(['singer','album'])->orderBy('created_at','desc')->take(3)->get();
+      $rankDetail = Song::with(['singer', 'album'])->orderBy('created_at', 'desc')->take(3)->get();
     } else if ($rbid == 3) {
-      $rankDetail = Label::where("lbid", 1)->with(['song','song.singer','song.album'])->take(3)->get();
+      $rankDetail = Label::where("lbid", 1)->with(['song', 'song.singer', 'song.album'])->take(3)->get();
     } else if ($rbid == 4) {
-      $rankDetail = Song::with(['singer','album'])->orderBy('playNum','desc')->take(3)->get();
+      $rankDetail = Song::with(['singer', 'album'])->orderBy('playNum', 'desc')->take(3)->get();
     } else if ($rbid == 11) {
       $rankDetail = Label::where("lbid", 9)->with(['song' => function ($query) {
-        $query -> orderBy('playNum', 'desc');
-      },'song.singer','song.album'])->take(3)->get();
+        $query->orderBy('playNum', 'desc');
+      }, 'song.singer', 'song.album'])->take(3)->get();
     } else {
       if ($rbid == 5) {
         $lbid = 2;
       } else if ($rbid == 6) {
         $lbid = 3;
-      }else if ($rbid == 7) {
+      } else if ($rbid == 7) {
         $lbid = 4;
-      }else if ($rbid == 8) {
+      } else if ($rbid == 8) {
         $lbid = 5;
-      }else if ($rbid == 9) {
+      } else if ($rbid == 9) {
         $lbid = 6;
-      }else if ($rbid == 10) {
+      } else if ($rbid == 10) {
         $lbid = 7;
       } else {
         return "没有此榜单";
       }
-      $rankDetail = Label::where("lbid", $lbid)->with(['song','song.singer','song.album'])->take(3)->get();
+      $rankDetail = Label::where("lbid", $lbid)->with(['song', 'song.singer', 'song.album'])->take(3)->get();
     }
     return $rankDetail;
   }

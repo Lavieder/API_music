@@ -10,18 +10,18 @@ use App\Models\SexClass;
 
 class SingerController extends Controller
 {
-    public function singerAll() 
-    {
-        return Singer::paginate(15);
-    }
+  public function singerAll()
+  {
+    return Singer::paginate(15);
+  }
 
-    public function areaClassAll()
-    {
-        return AreaClass::all();
-    }
+  public function areaClassAll()
+  {
+    return AreaClass::all();
+  }
 
-    public function sexClassAll()
-    {
-        return SexClass::all();
-    }
+  public function sexClassAll()
+  {
+    return SexClass::all();
+  }
 }

@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Atten extends Model
 {
-    protected $table = 'atten';
-    protected $primaryKey = 'attid';
+  protected $table = 'atten';
+  protected $primaryKey = 'attid';
 }

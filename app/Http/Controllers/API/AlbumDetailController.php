@@ -8,12 +8,12 @@ use App\models\Album;
 
 class AlbumDetailController extends Controller
 {
-    public function albumDetail(Request $req)
-    {
-        $alid = $req->input('alid');
-        $albumDetail = Album::where('alid',$alid)->with(['song','singer'])->get();
-        return json_encode([
-            'albumDetail' => $albumDetail
-        ]);
-    }
+  public function albumDetail(Request $req)
+  {
+    $alid = $req->input('alid');
+    $albumDetail = Album::where('alid', $alid)->with(['song', 'singer'])->get();
+    return json_encode([
+      'albumDetail' => $albumDetail
+    ]);
+  }
 }

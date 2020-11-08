@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SexClass extends Model
 {
-    protected $table = 'sexclass';
-    public $timestamps = false;
-    protected $primaryKey = 'sexid';
+  protected $table = 'sexclass';
+  public $timestamps = false;
+  protected $primaryKey = 'sexid';
 }

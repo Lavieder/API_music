@@ -20,14 +20,34 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/login','API\UserController@UserLogin');
 Route::get('/login','API\UserController@UserLogin');
+Route::post('/reg','API\UserController@UserRegister');
+Route::get('/reg','API\UserController@UserRegister');
 //, 'middleware' => 'checkUser'
 Route::group(['prefix' => 'user'],function(){
+    Route::post('/upface','API\UserController@UpdateFace');
+    Route::get('/upface','API\UserController@UpdateFace');
+
     Route::post('/ugd','API\UserController@getUserGedan');
     Route::get('/ugd','API\UserController@getUserGedan');
+
+    Route::post('/adfs','API\UserController@addReMyLikeSong');
+    Route::get('/adfs','API\UserController@addReMyLikeSong');
+
+    Route::post('/myfs','API\UserController@getMyLikeSong');
+    Route::get('/myfs','API\UserController@getMyLikeSong');
+
+    Route::post('/delfs','API\UserController@delMyLikeSong');
+    Route::get('/delfs','API\UserController@delMyLikeSong');
+
     Route::post('/cmgd','API\UserController@createMyGedan');
     Route::get('/cmgd','API\UserController@createMyGedan');
+
+    Route::post('/ctgd','API\UserController@collectGedan');
+    Route::get('/ctgd','API\UserController@collectGedan');
+
     Route::post('/upui','API\UserController@updateUserInfo');
     Route::get('/upui','API\UserController@updateUserInfo');
+
     Route::post('/delgd','API\UserController@delGedan');
     Route::get('/delgd','API\UserController@delGedan');
 });
